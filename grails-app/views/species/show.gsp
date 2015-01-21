@@ -44,7 +44,7 @@
             collectoryUrl:  "${collectoryUrl}",
             guid:           "${guid}",
             scientificName: "${tc?.taxonConcept?.nameString?:''}",
-            synonymsQuery:  "${synonymsQuery.encodeAsURL()}",
+            synonymsQuery:  "${synonymsQuery.replaceAll('""','"').encodeAsJavaScript()}",
             citizenSciUrl:  "${citizenSciUrl}",
             serverName:     "${grailsApplication.config.grails.serverURL}",
             bieUrl:         "${grailsApplication.config.bie.baseURL}",
