@@ -23,8 +23,8 @@ class BieTagLib {
 
             try {
                 def pn = pnp.parse(name) // attempt to parse phrase name
-                log.debug "name = ${name} || rankId = ${pn.canonicalName()}"
-                output = "<i>${pn.canonicalName()}</i> ${pn.authorshipComplete()}"
+                log.debug "name = ${name} || rankId = ${pn.canonicalName()} || ${pn.canonicalNameWithAuthorship()}"
+                output = "<i>${pn.fullName()}</i> ${pn.authorshipComplete()}"
             } catch (Exception ex) {
                 log.warn "Error parsing name (${name}): ${ex}", ex
             }
