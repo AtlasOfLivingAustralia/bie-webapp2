@@ -25,7 +25,7 @@ h4 {font-size: 1.4em;}
     color: #555555;
     opacity:0.6;
     filter:alpha(opacity=60);
-    margin: 1px 4px 0;
+    margin: 0px 4px;
 }
 
 #breadcrumb a.current {
