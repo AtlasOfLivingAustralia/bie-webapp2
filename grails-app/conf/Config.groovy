@@ -65,7 +65,7 @@ if(!ranking.readonly){
     ranking.readonly = true // revert when ranking of images is fixed
 }
 if(!headerAndFooter.baseURL){
-    headerAndFooter.baseURL = 'http://www2.ala.org.au/commonui'
+    //headerAndFooter.baseURL = 'http://www2.ala.org.au/commonui'
 }
 
 /******************************************************************************\
@@ -165,6 +165,24 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+// GSP settings
+grails {
+    views {
+        gsp {
+            encoding = 'UTF-8'
+            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+            codecs {
+                expression = 'none' // escapes values inside ${}
+                scriptlet = 'none' // escapes output from scriptlets in GSPs
+                taglib = 'none' // escapes output from taglibs
+                staticparts = 'none' // escapes output from static template parts
+            }
+        }
+        // escapes all not-encoded output at final stage of outputting
+        // filteringCodecForContentType.'text/html' = 'html'
+    }
+}
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {
@@ -175,7 +193,7 @@ environments {
         security.cas.appServerName = "${grails.host}:8080"
         security.cas.contextPath = "/${appName}"
         // cached-resources plugin - keeps original filenames but adds cache-busting params
-        grails.resources.debug = true
+        //grails.resources.debug = true
       //  bie.baseURL = "http://diasbtest1-cbr.vm.csiro.au:8080/bie-service"
     }
     test {

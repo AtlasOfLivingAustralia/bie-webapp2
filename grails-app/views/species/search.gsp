@@ -20,7 +20,7 @@
 <head>
     <meta name="layout" content="main" />
     <title>${query} | Search | <g:message code="site.title"/></title>
-    <r:require module="search"/>
+    <r:require modules="search"/>
     <r:script disposition='head'>
         // global var to pass GSP vars into JS file
         SEARCH_CONF = {

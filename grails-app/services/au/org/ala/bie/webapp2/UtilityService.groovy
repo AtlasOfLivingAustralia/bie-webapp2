@@ -1,6 +1,5 @@
 package au.org.ala.bie.webapp2
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import org.apache.commons.lang.StringUtils
 import grails.converters.JSON
 
@@ -39,7 +38,7 @@ class UtilityService {
     def filterSimpleProperties(etc) {
         def simpleProperties = etc.simpleProperties
         def textProperties = []
-        def nonTruncatedSources = ConfigurationHolder.config.nonTruncatedSources
+        def nonTruncatedSources = grailsApplication.config.nonTruncatedSources
         //we only want the list to store the first type for each source
         Hashtable<String, Object> processProperties = new Hashtable<String, Object>();
         simpleProperties.each { sp ->

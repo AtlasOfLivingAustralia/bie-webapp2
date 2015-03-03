@@ -18,10 +18,8 @@ grails.project.dependency.resolution = {
     checksums true // Whether to verify checksums on resolve
 
     repositories {
-        mavenLocal()
-        mavenRepo ("http://nexus.ala.org.au/content/groups/public/") {
-            updatePolicy 'always'
-        }
+        inherits true // Whether to inherit repository definitions from plugins
+        mavenRepo "http://nexus.ala.org.au/content/groups/public/"
     }
 
     dependencies {
@@ -48,22 +46,12 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ":hibernate:3.6.10.15"
-        runtime ":jquery:1.7.2"
-        runtime ":resources:1.2.8"
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.4"
-        // Moved these plugins from application.properties file
-        compile ':cache:1.0.1'
-        //runtime ":cached-resources:1.1"
-        //runtime ":cache-headers:1.1.6"
-        runtime ":rest:0.8"
-
-        compile(":ala-web-theme:[0.1,1.0)") {
-            excludes "jquery","resources","cache","servlet-api"
-        }
-
-        build ":tomcat:7.0.53"
+        build ":tomcat:7.0.54"
+        compile ':cache:1.1.7'
+        runtime ":jquery:1.11.1"
+        runtime ":resources:1.2.14"
+        //runtime ":rest:0.8"
+        runtime ":ala-bootstrap2:2.1-SNAPSHOT"
+        runtime ":ala-auth:1.3-SNAPSHOT"
     }
 }

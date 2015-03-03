@@ -1,17 +1,19 @@
 modules = {
     application {
+        dependsOn 'jquery-migration'
         resource url:'js/application.js'
         resource url:'css/AlaBsAdditions.css'
     }
 
     search {
+        dependsOn 'application'
         resource url:[dir:'css', file:'bie.search.css']
         resource url:[dir:'js', file:'jquery.sortElemets.js']
         resource url:[dir:'js', file:'search.js']
     }
 
     show {
-        dependsOn 'colorbox, fancybox, cleanHtml, snazzy, bootstrap'
+        dependsOn 'application, colorbox, fancybox, cleanHtml, snazzy, bootstrap'
         resource url:[dir:'css', file:'species.css']
         resource url:[dir:'css', file:'jquery.qtip.min.css']
         resource url:[dir:'js', file:'jquery.sortElemets.js', disposition: 'head']
