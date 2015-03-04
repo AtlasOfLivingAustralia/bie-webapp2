@@ -51,7 +51,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.14"
         //runtime ":rest:0.8"
-        runtime ":ala-bootstrap2:2.1-SNAPSHOT"
-        runtime ":ala-auth:1.3-SNAPSHOT"
+        runtime ":ala-bootstrap2:2.1"
+        runtime ":ala-auth:1.2"
     }
 }
