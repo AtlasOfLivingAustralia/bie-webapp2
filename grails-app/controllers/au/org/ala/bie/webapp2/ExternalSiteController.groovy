@@ -21,14 +21,12 @@ class ExternalSiteController {
         Document doc = Jsoup.connect(url).get()
         Elements results = doc.select("div.rslt")
 
-        def totalResultsRaw = doc.select("a[title=Total Results]").text()
-        def matcher = totalResultsRaw =~ "All \\(([0-9]{1,})\\)"
-        def found = matcher.find()
+        def totalResultsRaw = doc.select("h2.result_count").text()
         def totalResults = 0
         def formattedResults = []
 
-        if(found){
-            totalResults = matcher.group(1)
+        if(totalResultsRaw){
+            totalResults = totalResultsRaw
             results.each { result ->
                 def titleEl = result.getElementsByClass("title")
                 def linkTag = titleEl.get(0).getElementsByTag("a")
