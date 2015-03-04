@@ -18,8 +18,9 @@ grails.project.dependency.resolution = {
     checksums true // Whether to verify checksums on resolve
 
     repositories {
-        inherits true // Whether to inherit repository definitions from plugins
-        mavenRepo "http://nexus.ala.org.au/content/groups/public/"
+        mavenRepo ("http://nexus.ala.org.au/content/groups/public/") {
+            updatePolicy 'always'
+        }
     }
 
     dependencies {
@@ -33,16 +34,10 @@ grails.project.dependency.resolution = {
         }
 
         compile "commons-httpclient:commons-httpclient:3.1",
-//                "atg:json-taglib:0.4.1",
                 "org.codehaus.jackson:jackson-core-asl:1.8.6",
                 "org.codehaus.jackson:jackson-mapper-asl:1.8.6"
-//        compile group:'au.org.ala',
-//                name:'ala-cas-client',
-//                version:'1.0-SNAPSHOT',
-//                transitive:false
         compile 'org.jasig.cas.client:cas-client-core:3.1.12'
         runtime 'org.jsoup:jsoup:1.7.2'
-        // runtime 'mysql:mysql-connector-java:5.1.16'
     }
 
     plugins {
@@ -50,7 +45,6 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.7'
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.14"
-        //runtime ":rest:0.8"
         runtime ":ala-bootstrap2:2.1"
         runtime ":ala-auth:1.2"
     }
