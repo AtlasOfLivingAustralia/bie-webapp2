@@ -172,7 +172,7 @@ section#classification dt#currentTaxonConcept, section#literature table .earlies
 }
 
 .nav-tabs li a {
-    background-color: #f0f0e8;
+    /*background-color: #f0f0e8;*/
     border: 1px solid #ddd;
     margin-right: 3px;
 }
@@ -195,6 +195,7 @@ td[colspan="2"], section#names th {
 }
 
 div.rankCommonName {
+    display:none;
     position: relative;
     width: 170px;
     font-size: 11px;
