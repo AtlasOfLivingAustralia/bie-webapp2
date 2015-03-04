@@ -27,6 +27,13 @@ modules = {
         resource url:[dir:'js', file:'moment.min.js']
     }
 
+    imageSearch {
+        dependsOn 'jquery-migration'
+        resource url:[dir:'js', file:'jquery.tools.min.js']
+        resource url:[dir:'js', file:'jquery.inview.min.js']
+        resource url:[dir:'js', file:'jquery.livequery.min.js']
+    }
+
     cleanHtml {
         resource url:[dir:'js', file:'jquery.htmlClean.js']
     }

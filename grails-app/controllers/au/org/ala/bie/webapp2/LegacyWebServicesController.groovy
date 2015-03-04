@@ -15,13 +15,15 @@
 
 package au.org.ala.bie.webapp2
 
+import grails.util.Holders
+
 /**
  * Redirect web services URIs to the (old) BIE webapp
  */
 class LegacyWebServicesController {
     def webService
     def utilityService
-    def config = org.codehaus.groovy.grails.commons.ConfigurationHolder.config
+    def config = Holders.config
     def bieBaseUrl = config.bie.baseURL?:"http://bie.ala.org.au"
 
     /**
@@ -69,7 +71,7 @@ class LegacyWebServicesController {
         def paramString = request.getQueryString()
         log.debug "imageSearchJson with params = ${paramString}"
         log.debug "imageSearchJson with action = ${action}"
-        def resp = webService.get("${bieBaseUrl}/ws/image-search/${action}.json?${paramString}")
+        def resp = webService.get("${bieBaseUrl}/ws/image-search/${action}.json?${paramString}", true)
         render(contentType: utilityService.getJsonMimeType(params), text: resp)
     }
 

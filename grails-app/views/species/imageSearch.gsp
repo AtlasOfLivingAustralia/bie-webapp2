@@ -27,12 +27,8 @@
     <title><g:if test="${params.scientificName}">${params.taxonRank}  ${params.scientificName} | </g:if> Image browser | Atlas of Living Australia</title>
     <meta name="layout" content="main" />
     <meta name="fluidLayout" content="${true}" />
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'colorbox.css')}" type="text/css" media="screen" />
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.colorbox-min.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.tools.min.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.inview.min.js')}"></script>
-    <script type="text/javascript" src="${resource(dir: 'js', file: 'jquery.livequery.min.js')}"></script>
-    <script type="text/javascript">
+    <r:require modules="imageSearch, colorbox, application" />
+    <r:script>
         var prevPage = 0;
         var currentPage = 0;
         var lastPage, noOfColumns;
@@ -47,9 +43,10 @@
             imageLoad();
 
             // trigger more images to load when bottom of page comes "in view"
-            $("#loadMoreTrigger").live("inview", function(event, visible, visiblePartX, visiblePartY) {
+            $("#loadMoreTrigger").on("inview", function(event, visible, visiblePartX, visiblePartY) {
+                console.log("inview triggered", event, visible);
                 if (visible && !processing) {
-                    //console.log("currentPage", currentPage);
+                    console.log("currentPage", currentPage);
                     imageLoad();
                 }
 
@@ -75,7 +72,7 @@
             //send a query to server side to present new content
             $.ajax({
                 type: "GET",
-                url: "${grailsApplication.config.bie.baseURL}/image-search/showSpecies.json?taxonRank=${params['taxonRank']}&scientificName=${params['scientificName']}&start=" + (currentPage * pageSize) + "&pageSize=" + pageSize,
+                url: "${g.resource(uri:'/')}/image-search/showSpecies.json?taxonRank=${params['taxonRank']}&scientificName=${params['scientificName']}&start=" + (currentPage * pageSize) + "&pageSize=" + pageSize,
                 contentType: "application/json; charset=utf-8",
                 dataType: "jsonp",
                 success: function (data) {
@@ -140,7 +137,8 @@
             return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
         }
 
-    </script>
+    </r:script>
+
     <style type="text/css">
     .thumbImage {
 
@@ -227,10 +225,13 @@
         background-color: black;
         opacity: 0.7;
     }
+    #page-header {
+        margin: 0 20px;
+    }
 
     </style>
 </head>
-<body class="nav-species fluid">
+<body class="nav-species">
     <header id="page-header">
         <div class="inner row-fluid">
             <nav id="breadcrumb" class="span12">
@@ -246,7 +247,7 @@
             </hgroup>
         </div>
     </header>
-    <div class="inner">
+    <div class="inner row-fluid">
         <%-- template used by AJAX code --%>
         <div class="imgConTmpl hide">
             <div class="imgCon">
@@ -258,7 +259,7 @@
             </div>
         </div>
 
-        <div id="imageResults">
+        <div id="imageResults" class="span12">
             <!-- image objects get inserted here by JS -->
         </div>
 
